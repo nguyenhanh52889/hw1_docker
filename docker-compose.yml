@@ -1,0 +1,14 @@
+version: "2"
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5000:5000"
+
+  consumer:
+    build: consumer
+    volumes:
+      - ./consumer:/app
+    links:
+      - rabbitmq
+    restart: on-failure
